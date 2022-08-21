@@ -1,0 +1,92 @@
+Hibernate: 
+    
+    create table aluno (
+       id_aluno integer not null auto_increment,
+        cpf varchar(255),
+        dt_nascimento date,
+        email varchar(50),
+        nome varchar(60),
+        telefone varchar(255),
+        primary key (id_aluno)
+    ) engine=InnoDB
+Hibernate: 
+    
+    create table curso (
+       id_curso integer not null auto_increment,
+        dt_atualização datetime(6),
+        dt_criacao date not null,
+        duracao integer,
+        nome varchar(50),
+        professor_id_professor integer,
+        primary key (id_curso)
+    ) engine=InnoDB
+Hibernate: 
+    
+    create table curso_aluno (
+       id_matricula integer not null auto_increment,
+        dt_fim date,
+        dt_inicio date,
+        aluno_id_aluno integer,
+        id_curso integer,
+        primary key (id_matricula)
+    ) engine=InnoDB
+Hibernate: 
+    
+    create table Professor (
+       id_professor integer not null auto_increment,
+        dt_cadastro datetime(6),
+        dt_nascimento date,
+        formacao varchar(50),
+        nome varchar(50),
+        primary key (id_professor)
+    ) engine=InnoDB
+Hibernate: 
+    
+    alter table curso 
+       add constraint FK5j1yj1nby3gloqikfynegdj0c 
+       foreign key (professor_id_professor) 
+       references Professor (id_professor)
+Hibernate: 
+    
+    alter table curso_aluno 
+       add constraint FK2s97wdocuj0e9bvhastpnvrfb 
+       foreign key (aluno_id_aluno) 
+       references aluno (id_aluno)
+Hibernate: 
+    
+    alter table curso_aluno 
+       add constraint FKl5et7oqdy2pl3elyc38yy65kc 
+       foreign key (id_curso) 
+       references curso (id_curso)
+
+Hibernate: 
+    insert 
+    into
+        aluno
+        (cpf, dt_nascimento, email, nome, telefone) 
+    values
+        (?, ?, ?, ?, ?)
+        
+Hibernate: 
+    insert 
+    into
+        Professor
+        (dt_cadastro, dt_nascimento, formacao, nome) 
+    values
+        (?, ?, ?, ?)
+        
+Hibernate: 
+    insert 
+    into
+        curso
+        (dt_atualização, dt_criacao, duracao, nome, professor_id_professor) 
+    values
+        (?, ?, ?, ?, ?)
+        
+Hibernate: 
+    insert 
+    into
+        curso_aluno
+        (aluno_id_aluno, id_curso, dt_fim, dt_inicio) 
+    values
+        (?, ?, ?, ?)
