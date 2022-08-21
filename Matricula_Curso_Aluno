@@ -1,0 +1,76 @@
+package org.example.entity;
+
+import java.time.LocalDate;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "curso_aluno")
+public class Matricula_Curso_Aluno {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_matricula")
+    private Integer id_matricula;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_curso")
+    private Curso curso;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    private Aluno aluno;
+
+    @Column(name = "dt_inicio")
+    private LocalDate dataInicio;
+
+    @Column(name = "dt_fim")
+    private LocalDate dataFim;
+
+    public Matricula_Curso_Aluno() {
+    }
+
+    public Matricula_Curso_Aluno(Curso curso, Aluno aluno, LocalDate dataInicio, LocalDate dataFim) {
+        this.curso = curso;
+        this.aluno = aluno;
+        this.dataInicio = dataInicio;
+        this.dataFim = dataFim;
+    }
+
+    public Curso getCurso() {
+        return curso;
+    }
+
+    public void setCurso(Curso curso) {
+        this.curso = curso;
+    }
+
+    public Aluno getAluno() {
+        return aluno;
+    }
+
+    public void setAluno(Aluno aluno) {
+        this.aluno = aluno;
+    }
+
+    public LocalDate getDataInicio() {
+        return dataInicio;
+    }
+
+    public void setDataInicio(LocalDate dataInicio) {
+        this.dataInicio = dataInicio;
+    }
+
+    public LocalDate getDataFim() {
+        return dataFim;
+    }
+
+    public void setDataFim(LocalDate dataFim) {
+        this.dataFim = dataFim;
+    }
+}
